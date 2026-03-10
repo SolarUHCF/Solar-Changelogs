@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog 4 — Map 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #f5c542;
+    --gold-dim: #c9992a;
+    --orange: #ff8c42;
+    --red: #e84545;
+    --teal: #00d4c8;
+    --blue: #4a9eff;
+    --green: #3ddc84;
+    --bg: #0a0c0f;
+    --panel: #0f1318;
+    --border: #1e2530;
+    --text: #cdd5e0;
+    --muted: #5a6478;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245,197,66,0.06) 0%, transparent 70%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .server-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border: 1px solid rgba(245,197,66,0.3);
+    border-radius: 2px;
+    background: rgba(245,197,66,0.05);
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .title {
+    font-family: 'Oxanium', sans-serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .title span {
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(245,197,66,0.4);
+  }
+
+  .subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto 0;
+  }
+
+  /* ── OVERVIEW ── */
+  .overview {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease 0.1s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .overview::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(245,197,66,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .overview-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .overview-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .overview-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .overview-list li::before {
+    content: '▸';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-new { background: rgba(61,220,132,0.15); color: var(--green); border: 1px solid rgba(61,220,132,0.3); }
+  .badge-event { background: rgba(74,158,255,0.15); color: var(--blue); border: 1px solid rgba(74,158,255,0.3); }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.25s; }
+  .section:nth-child(5) { animation-delay: 0.35s; }
+  .section:nth-child(6) { animation-delay: 0.45s; }
+
+  .event-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .event-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .event-header::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .card-sumo .event-header::after { background: var(--orange); }
+  .card-spleef .event-header::after { background: var(--teal); }
+  .card-minesweeper .event-header::after { background: var(--red); }
+  .card-trivia .event-header::after { background: var(--gold); }
+
+  .event-icon {
+    width: 44px; height: 44px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .card-sumo .event-icon { background: rgba(255,140,66,0.12); }
+  .card-spleef .event-icon { background: rgba(0,212,200,0.12); }
+  .card-minesweeper .event-icon { background: rgba(232,69,69,0.12); }
+  .card-trivia .event-icon { background: rgba(245,197,66,0.12); }
+
+  .event-meta { flex: 1; }
+
+  .event-name {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .card-sumo .event-name { color: var(--orange); }
+  .card-spleef .event-name { color: var(--teal); }
+  .card-minesweeper .event-name { color: var(--red); }
+  .card-trivia .event-name { color: var(--gold); }
+
+  .event-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .event-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .event-desc {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .event-desc strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .info-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .info-pill .pip {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .card-sumo .pip { background: var(--orange); box-shadow: 0 0 6px var(--orange); }
+  .card-spleef .pip { background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+  .card-minesweeper .pip { background: var(--red); box-shadow: 0 0 6px var(--red); }
+  .card-trivia .pip { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+  .pill-label { color: var(--muted); font-size: 11px; font-family: 'Share Tech Mono', monospace; display: block; }
+  .pill-value { color: #fff; }
+
+  .cmd-block {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .cmd-block .cmd-label {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="server-logo">
+      <span class="logo-dot"></span>
+      Solar Network
+    </div>
+    <h1 class="title">Changelog <span>#4</span></h1>
+    <p class="subtitle">Map 2 &nbsp;·&nbsp; Update Notes</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-title">// What's New</div>
+    <ul class="overview-list">
+      <li>Trivia System — questions every 15 minutes, win 2 Keys for the right answer <span class="badge badge-new">New</span></li>
+      <li>Spleef Event added <span class="badge badge-event">Event</span></li>
+      <li>Sumo Event added <span class="badge badge-event">Event</span></li>
+      <li>MineSweeper Event added <span class="badge badge-event">Event</span></li>
+    </ul>
+  </div>
+
+  <!-- SUMO -->
+  <div class="section">
+    <div class="event-card card-sumo">
+      <div class="event-header">
+        <div class="event-icon">🥊</div>
+        <div class="event-meta">
+          <div class="event-name">Sumo Event</div>
+          <div class="event-tag">PvP · Platform Combat</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <p class="event-desc">
+          Join by clicking <strong>[Click to Join]</strong> in chat or by typing <strong>/sumoevent join</strong>.
+          All participants get teleported onto a <strong>Sumo Platform</strong> — your inventory is saved and fully
+          returned to you after the event. <strong>No items</strong> are available during the fight.
+          The last player <strong>standing on the platform</strong> wins the event and receives the configured rewards.
+        </p>
+        <div class="info-grid">
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Join Command</span><span class="pill-value">/sumoevent join</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Win Condition</span><span class="pill-value">Last on Platform</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Inventory</span><span class="pill-value">Saved &amp; Restored</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPLEEF -->
+  <div class="section">
+    <div class="event-card card-spleef">
+      <div class="event-header">
+        <div class="event-icon">❄️</div>
+        <div class="event-meta">
+          <div class="event-name">Spleef Event</div>
+          <div class="event-tag">Minigame · Snowblock Arena</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <p class="event-desc">
+          Join by clicking <strong>[Click to Join]</strong> in chat or by typing <strong>/spleef join</strong>.
+          All players are teleported to a snow platform and given an <strong>Efficiency X Diamond Shovel</strong>.
+          After a <strong>10-second free-roam phase</strong> (no hitting, no breaking), the round starts.
+          Dig the snow beneath your opponents to make them fall. Anyone who drops <strong>below the arena floor</strong>
+          is eliminated. The <strong>last player remaining</strong> on the platform wins.
+          Your inventory is saved and returned after the event.
+        </p>
+        <div class="info-grid">
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Join Command</span><span class="pill-value">/spleef join</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Win Condition</span><span class="pill-value">Last Standing</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Tool</span><span class="pill-value">Diamond Shovel Eff. X</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Inventory</span><span class="pill-value">Saved &amp; Restored</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINESWEEPER -->
+  <div class="section">
+    <div class="event-card card-minesweeper">
+      <div class="event-header">
+        <div class="event-icon">💣</div>
+        <div class="event-meta">
+          <div class="event-name">MineSweeper Event</div>
+          <div class="event-tag">Minigame · Mine Field Race</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <p class="event-desc">
+          Join by clicking <strong>[Click to Join]</strong> in chat or by typing <strong>/minesweeper join</strong>.
+          All participants are teleported to the start of a <strong>mine field</strong> scattered with hidden pressure plates.
+          After a <strong>10-second countdown</strong>, race across the field to reach the <strong>finish line</strong> on the other side.
+          Step on a pressure plate and you're <strong>instantly eliminated</strong> — jump over them to survive.
+          The <strong>first player to cross the finish line</strong> wins. Your inventory is saved and returned after the event.
+        </p>
+        <div class="info-grid">
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Join Command</span><span class="pill-value">/minesweeper join</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Win Condition</span><span class="pill-value">Cross Finish Line</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Eliminated By</span><span class="pill-value">Pressure Plates</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Inventory</span><span class="pill-value">Saved &amp; Restored</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIVIA -->
+  <div class="section">
+    <div class="event-card card-trivia">
+      <div class="event-header">
+        <div class="event-icon">🧠</div>
+        <div class="event-meta">
+          <div class="event-name">Trivia System</div>
+          <div class="event-tag">Passive · Chat Event</div>
+        </div>
+      </div>
+      <div class="event-body">
+        <p class="event-desc">
+          Every <strong>15 minutes</strong>, a trivia question is broadcast to the server chat.
+          The <strong>first player to type the correct answer</strong> wins <strong>2 Keys</strong> as a reward.
+          No commands needed — just be quick and type the answer in chat.
+        </p>
+        <div class="info-grid">
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Interval</span><span class="pill-value">Every 15 Minutes</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">Reward</span><span class="pill-value">2 Keys</span></div>
+          </div>
+          <div class="info-pill">
+            <span class="pip"></span>
+            <div><span class="pill-label">How to Win</span><span class="pill-value">First Correct Answer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Solar Network &nbsp;·&nbsp; Changelog #4 &nbsp;·&nbsp; Map 2
+  </div>
+
+</div>
+</body>
+</html>
